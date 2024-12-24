@@ -3,7 +3,6 @@ import time
 import json
 import subprocess 
 import random
-from termcolor import colored
 
 with open('resource/gpu.json', 'r') as file:
     gpu_list = json.load(file)
@@ -15,9 +14,6 @@ gpu = {
 }
 
 name = ""
-
-def bold(s):
-    return colored(s, attrs=["bold"])
 
 def gum_table(ls, headers, index=0, print_index=1):
     option = subprocess.check_output(
@@ -114,8 +110,8 @@ def buy_gpu(choice):
 
 def gpu_store():
     while 1:
-        print("welcome to the", bold("gpu store") + "!")
-        print(f"current gpu: {gpu["name"]} (quality {bold(gpu["quality"])})")
+        print("welcome to the gpu store!")
+        print(f"current gpu: {gpu["name"]} (quality {gpu["quality"]})")
         choice = gum_table([[g["name"], g["price"], g["quality"]] for g in gpu_list if g["quality"] > gpu["quality"]], ["name", "price", "quality"], index=1)
         if choice == 0:
             break
